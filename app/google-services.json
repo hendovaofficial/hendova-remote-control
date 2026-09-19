@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "994328600212",
+    "project_id": "hendova-remote-control",
+    "storage_bucket": "hendova-remote-control.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994328600212:android:f9ca4abe60f001174dde81",
+        "android_client_info": {
+          "package_name": "com.hendova.remotecontrol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCD6qtrpJnzqptIi7pdDYiKAukiVt306U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
