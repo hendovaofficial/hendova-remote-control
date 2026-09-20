@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F7FA">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,50 +13,78 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="HENDOVA"
+            android:textColor="#202124"
             android:textSize="32sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:paddingBottom="4dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="REMOTE CONTROL"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:paddingBottom="32dp" />
+            android:textColor="#6B7280"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="Your Device ID"
-            android:textSize="14sp" />
+            android:textColor="#555555"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/deviceIdText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HDV-XXXXXXXX"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingTop="8dp"
-            android:paddingBottom="24dp" />
+            android:layout_marginTop="8dp"
+            android:text="HDV-XXXXXX"
+            android:textColor="#202124"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/connectButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CONNECT DEVICE" />
+            android:layout_marginTop="28dp"
+            android:text="REGISTER DEVICE"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Remote Device ID"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/remoteIdInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan ID perangkat target"
+            android:inputType="textCapCharacters"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/controlButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="REQUEST CONNECTION"
+            android:textAllCaps="false" />
 
         <TextView
             android:id="@+id/statusText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status: Siap"
-            android:textSize="15sp"
-            android:paddingTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:text="Status: Ready"
+            android:textColor="#555555"
+            android:textSize="16sp" />
 
     </LinearLayout>
-
 </ScrollView>
