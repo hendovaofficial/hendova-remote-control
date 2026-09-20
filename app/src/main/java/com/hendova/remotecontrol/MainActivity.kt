@@ -1,5 +1,6 @@
 package com.hendova.remotecontrol
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Button
@@ -7,10 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 
 class MainActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
+    private var requestListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         deviceIdText.text = hendovaId
 
-        // Mendaftarkan perangkat ke Firebase
+        // Mendaftarkan perangkat
         connectButton.setOnClickListener {
 
             statusText.text = "Mendaftarkan perangkat..."
@@ -49,8 +52,7 @@ class MainActivity : AppCompatActivity() {
                     statusText.text = "Perangkat berhasil terdaftar"
                 }
                 .addOnFailureListener { error ->
-                    statusText.text =
-                        "Gagal: ${error.message}"
+                    statusText.text = "Gagal: ${error.message}"
                 }
         }
 
@@ -71,8 +73,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            statusText.text = "Mengirim permintaan koneksi..."
-
             val requestData = hashMapOf(
                 "controllerId" to hendovaId,
                 "targetId" to remoteId,
@@ -80,16 +80,75 @@ class MainActivity : AppCompatActivity() {
                 "timestamp" to System.currentTimeMillis()
             )
 
+            statusText.text = "Mengirim permintaan..."
+
             db.collection("connection_requests")
                 .add(requestData)
                 .addOnSuccessListener {
-                    statusText.text =
-                        "Permintaan koneksi berhasil dikirim"
+                    statusText.text = "Permintaan berhasil dikirim"
                 }
                 .addOnFailureListener { error ->
-                    statusText.text =
-                        "Gagal mengirim: ${error.message}"
+                    statusText.text = "Gagal: ${error.message}"
                 }
         }
+
+        // Memantau permintaan masuk secara otomatis
+        requestListener = db.collection("connection_requests")
+            .whereEqualTo("targetId", hendovaId)
+            .whereEqualTo("status", "pending")
+            .addSnapshotListener { snapshots, error ->
+
+                if (error != null || snapshots == null) {
+                    return@addSnapshotListener
+                }
+
+                for (document in snapshots.documents) {
+
+                    val controllerId =
+                        document.getString("controllerId") ?: continue
+
+                    showConnectionDialog(
+                        document.id,
+                        controllerId
+                    )
+
+                    break
+                }
+            }
+    }
+
+    private fun showConnectionDialog(
+        requestId: String,
+        controllerId: String
+    ) {
+
+        AlertDialog.Builder(this)
+            .setTitle("Permintaan Koneksi")
+            .setMessage(
+                "Perangkat $controllerId ingin terhubung ke perangkat Anda."
+            )
+            .setPositiveButton("SETUJUI") { dialog, _ ->
+
+                db.collection("connection_requests")
+                    .document(requestId)
+                    .update("status", "accepted")
+
+                dialog.dismiss()
+            }
+            .setNegativeButton("TOLAK") { dialog, _ ->
+
+                db.collection("connection_requests")
+                    .document(requestId)
+                    .update("status", "rejected")
+
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requestListener?.remove()
     }
 }
