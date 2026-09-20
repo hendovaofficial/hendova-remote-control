@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="28dp"
+    android:background="#10234D">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🔔"
+        android:textSize="42sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Permintaan Koneksi"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/requestMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Perangkat ingin terhubung"
+        android:textColor="#C0CCE8"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/acceptConnectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SETUJUI"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#16C784"
+        android:layout_marginTop="24dp"/>
+
+    <Button
+        android:id="@+id/rejectConnectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TOLAK"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#E83F5B"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
