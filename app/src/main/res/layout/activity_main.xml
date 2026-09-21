@@ -60,6 +60,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DAFTARKAN PERANGKAT"
+            <Button
+    android:id="@+id/screenShareButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="BAGIKAN LAYAR"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold"
+    android:backgroundTint="#00A884"
+    android:layout_marginTop="16dp"/>
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:backgroundTint="#6C2BFF"
