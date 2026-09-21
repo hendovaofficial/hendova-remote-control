@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
     private var requestListener: ListenerRegistration? = null
+    private var responseListener: ListenerRegistration? = null
+
+    private val shownRequests = mutableSetOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,8 +86,31 @@ class MainActivity : AppCompatActivity() {
 
             db.collection("connection_requests")
                 .add(requestData)
-                .addOnSuccessListener {
-                    statusText.text = "Permintaan berhasil dikirim"
+                .addOnSuccessListener { document ->
+
+                    statusText.text = "Menunggu persetujuan..."
+
+                    responseListener?.remove()
+
+                    responseListener = db.collection("connection_requests")
+                        .document(document.id)
+                        .addSnapshotListener { snapshot, error ->
+
+                            if (error != null || snapshot == null) return@addSnapshotListener
+
+                            when (snapshot.getString("status")) {
+
+                                "accepted" -> {
+                                    statusText.text =
+                                        "Koneksi diterima oleh perangkat target"
+                                }
+
+                                "rejected" -> {
+                                    statusText.text =
+                                        "Koneksi ditolak oleh perangkat target"
+                                }
+                            }
+                        }
                 }
                 .addOnFailureListener { error ->
                     statusText.text = "Gagal: ${error.message}"
@@ -100,6 +126,10 @@ class MainActivity : AppCompatActivity() {
 
                 for (document in snapshots.documents) {
 
+                    if (shownRequests.contains(document.id)) continue
+
+                    shownRequests.add(document.id)
+
                     val controllerId =
                         document.getString("controllerId") ?: continue
 
@@ -107,8 +137,6 @@ class MainActivity : AppCompatActivity() {
                         document.id,
                         controllerId
                     )
-
-                    break
                 }
             }
     }
@@ -164,6 +192,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+
         requestListener?.remove()
+        responseListener?.remove()
     }
 }
