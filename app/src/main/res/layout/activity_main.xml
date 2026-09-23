@@ -109,7 +109,7 @@
         <!-- BAGIKAN LAYAR -->
 
         <Button
-            android:id="@+id/screenCaptureButton"
+            android:id="@+id/screenShareButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="BAGIKAN LAYAR"
