@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Izin layanan berbagi layar -->
     <uses-permission
         android:name="android.permission.FOREGROUND_SERVICE" />
 
@@ -25,7 +24,6 @@
 
         </activity>
 
-        <!-- Layanan berbagi layar -->
         <service
             android:name=".ScreenCaptureService"
             android:exported="false"
