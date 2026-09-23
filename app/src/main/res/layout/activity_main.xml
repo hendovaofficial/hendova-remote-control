@@ -22,7 +22,7 @@
             android:textSize="34sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,9 +31,9 @@
             android:textColor="#AEB9D6"
             android:textSize="16sp"
             android:gravity="center"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="6dp" />
 
-        <!-- DEVICE CARD -->
+        <!-- DEVICE -->
 
         <TextView
             android:layout_width="match_parent"
@@ -42,39 +42,30 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp" />
 
         <TextView
             android:id="@+id/deviceIdText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Perangkat"
+            android:text="HDV-XXXXXX"
             android:textColor="#50E3A4"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="20dp"
-            android:background="#142957"/>
+            android:background="#142957" />
 
         <Button
             android:id="@+id/connectButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DAFTARKAN PERANGKAT"
-            <Button
-    android:id="@+id/screenShareButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="BAGIKAN LAYAR"
-    android:textColor="#FFFFFF"
-    android:textStyle="bold"
-    android:backgroundTint="#00A884"
-    android:layout_marginTop="16dp"/>
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:backgroundTint="#6C2BFF"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
 
-        <!-- REMOTE CONNECTION -->
+        <!-- REMOTE -->
 
         <TextView
             android:layout_width="match_parent"
@@ -83,7 +74,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="36dp"/>
+            android:layout_marginTop="36dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -91,7 +82,7 @@
             android:text="Masukkan ID perangkat target untuk meminta koneksi."
             android:textColor="#AEB9D6"
             android:textSize="14sp"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp" />
 
         <EditText
             android:id="@+id/remoteIdInput"
@@ -103,7 +94,7 @@
             android:inputType="text"
             android:padding="16dp"
             android:backgroundTint="#536DAA"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp" />
 
         <Button
             android:id="@+id/controlButton"
@@ -113,7 +104,19 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:backgroundTint="#176BFF"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
+
+        <!-- BAGIKAN LAYAR -->
+
+        <Button
+            android:id="@+id/screenCaptureButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BAGIKAN LAYAR"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#50A8FF"
+            android:layout_marginTop="16dp" />
 
         <!-- STATUS -->
 
@@ -124,7 +127,7 @@
             android:text="Status: Ready"
             android:textColor="#50E3A4"
             android:textSize="16sp"
-            android:layout_marginTop="28dp"/>
+            android:layout_marginTop="28dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -134,7 +137,7 @@
             android:textSize="13sp"
             android:gravity="center"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp" />
 
     </LinearLayout>
 
