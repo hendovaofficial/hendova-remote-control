@@ -30,14 +30,16 @@ class ScreenCaptureService : Service() {
             "data"
         ) ?: return START_NOT_STICKY
 
-        val manager = getSystemService(
-            Context.MEDIA_PROJECTION_SERVICE
-        ) as MediaProjectionManager
+        val projectionManager =
+            getSystemService(
+                Context.MEDIA_PROJECTION_SERVICE
+            ) as MediaProjectionManager
 
-        mediaProjection = manager.getMediaProjection(
-            resultCode,
-            data
-        )
+        mediaProjection =
+            projectionManager.getMediaProjection(
+                resultCode,
+                data
+            )
 
         createNotificationChannel()
 
@@ -46,8 +48,12 @@ class ScreenCaptureService : Service() {
             "hendova_screen"
         )
             .setContentTitle("HENDOVA")
-            .setContentText("Berbagi layar sedang aktif")
-            .setSmallIcon(android.R.drawable.ic_menu_view)
+            .setContentText(
+                "Berbagi layar sedang aktif"
+            )
+            .setSmallIcon(
+                android.R.drawable.ic_menu_view
+            )
             .build()
 
         startForeground(
@@ -68,21 +74,28 @@ class ScreenCaptureService : Service() {
                 NotificationManager.IMPORTANCE_LOW
             )
 
-            val manager = getSystemService(
-                NotificationManager::class.java
-            )
+            val manager =
+                getSystemService(
+                    NotificationManager::class.java
+                )
 
-            manager.createNotificationChannel(channel)
+            manager.createNotificationChannel(
+                channel
+            )
         }
     }
 
     override fun onDestroy() {
+
         mediaProjection?.stop()
         mediaProjection = null
+
         super.onDestroy()
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
+    override fun onBind(
+        intent: Intent?
+    ): IBinder? {
         return null
     }
 }
